@@ -6,6 +6,8 @@ import org.testng.internal.BaseClassFinder;
 import com.GitApi.baseClass;
 import com.GitApi.utils.getUniqueValue;
 
+import io.restassured.assertion.BodyMatcher;
+
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 import java.util.HashMap;
@@ -34,8 +36,7 @@ public class gitApiTest extends baseClass{
 	//get repo by username path parameter
 	@Test
     public void getRepoByUsername() {
-		String username="qascript20";
-		
+	
 		given()
 		    
 		    .pathParam("username", "qascript20")
@@ -60,7 +61,7 @@ public class gitApiTest extends baseClass{
 		given()
 		    
 		    .pathParam("owner", "Lifesorted")
-		    .pathParam("repo", "Hello-World01")
+		    .pathParam("repo", "Demorepoc")
 		    .headers(setUp())
 		    
 		  .when()
@@ -103,6 +104,35 @@ public class gitApiTest extends baseClass{
 		      .statusCode(201)
 		      .statusLine("HTTP/1.1 201 Created")
 		      .log().all();
+		      //.body("private",equalTo(true))
+		      //.body("login", equalTo("Lifesorted"));
+	}
+
+	//patch request to update 
+	@Test
+	public void updateRepo() {
+		HashMap<String, Object> patchdata=new HashMap<String,Object>(){
+			{
+				put("name",getUniqueValue.getRepoName());
+			}
+		};
+		
+		given()
+		
+		      .headers(setUp())
+		      .pathParam("owner", "Lifesorted")
+		      .pathParam("repo", "DemorepoR")
+		      .body(patchdata)
+		      
+		    .when()
+		    
+		       .patch("https://api.github.com/repos/{owner}/{repo}")
+		    
+		    .then()
+		    
+		       .statusCode(200)
+		       .statusLine("HTTP/1.1 200 OK")
+	           .log().all();    
 	}
 
 }

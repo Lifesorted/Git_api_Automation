@@ -6,7 +6,7 @@
       <class name="com.GitApiTest.gitApiTest">
         <methods>
           <include name="setUp"/>
-          <include name="getRepoInfo"/>
+          <include name="updateRepo"/>
         </methods>
       </class> <!-- com.GitApiTest.gitApiTest -->
     </classes>

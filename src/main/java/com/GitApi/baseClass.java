@@ -8,7 +8,7 @@ public class baseClass {
 	
 	@BeforeMethod
 	public HashMap<String, String> setUp() {
-		String token="fb52d5ec840e3ff7b42ab32f54daa60e02f635c5";
+		String token="92a9a019633ce0b11467eaf0fc913797461592d5";
 		HashMap<String, String> mapobj=new HashMap<String,String>(){
 			{
 				put("accept","application/json");
